@@ -9,16 +9,16 @@ class CreateUserCargosTable extends Migration
     public function up()
     {
         Schema::create('user_cargos', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('cpf')->unique()->default('00000000000');
+            $table->id(); // Chave primária (auto-increment)
+            $table->unsignedBigInteger('user_cargo_id')->default();
             $table->string('cargo');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Chave estrangeira
+        
+            // Chave estrangeira - não precisa de referência à tabela `users` aqui
+            // O relacionamento é feito pela tabela `users` apontando para `user_cargos`
         });
+        
     }
-    
 
     public function down()
     {

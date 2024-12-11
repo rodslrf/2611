@@ -1,11 +1,14 @@
 <?php
 
+use App\Models\Cpf;
 namespace Database\Factories;
 
+use App\Models\Cpf;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UsuarioFactory extends Factory
+class CpfFactory extends Factory
 {
+    protected $model = Cpf::class;
     /**
      * Define the model's default state.
      *
@@ -14,10 +17,9 @@ class UsuarioFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'cpf' => $this->geradorCpf(),
         ];
     }
-
     public function geradorCpf()
     {
         $n1 = random_int(0, 9);

@@ -15,12 +15,10 @@ class CpfVerificationsTable extends Migration
     {
         Schema::create('cpf_verifications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('cpf')->unique()->default('00000000000');
+            $table->unsignedBigInteger('cpf_verification_id')->default(0);
+            $table->string('cpf')->unique()->default('000.000.000-00');
             $table->timestamp('cpf_verified_at')->nullable();
             $table->timestamps();
-        
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Chave estrangeira
         });
     }
 
@@ -31,6 +29,6 @@ class CpfVerificationsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('cpf_verification');
     }
 }

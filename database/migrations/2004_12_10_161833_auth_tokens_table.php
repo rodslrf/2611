@@ -15,12 +15,9 @@
         {
             Schema::create('auth_tokens', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBigInteger('user_id');
                 $table->string('password')->nullable();
                 $table->string('remember_token')->nullable();
                 $table->timestamps();
-            
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Chave estrangeira
             });
         }
 
@@ -31,6 +28,6 @@
          */
         public function down()
         {
-            //
+            Schema::dropIfExists('auth_tokens');
         }
     }
